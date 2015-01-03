@@ -196,7 +196,7 @@ Following are attributes that will be added to your consuming class.
 
 =head2 cache
 
-A L<CHI> object that will be used to communicate to your cache.  See L<CACHE CONFIGURATION|"CACHE CONFIGURATION"> for more details.
+A L<CHI> object that will be used to communicate to your cache.  See L<CACHE CONFIGURATION|"CACHE CONFIGURATION"> for how to configure.
 
 You can change this attribute's name via the cache_attr parameter.
 

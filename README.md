@@ -93,7 +93,7 @@ Following are attributes that will be added to your consuming class.
 
 ## cache
 
-A [CHI](https://metacpan.org/pod/CHI) object that will be used to communicate to your cache.  See [CACHE CONFIGURATION](#cache-configuration) for more details.
+A [CHI](https://metacpan.org/pod/CHI) object that will be used to communicate to your cache.  See [CACHE CONFIGURATION](#cache-configuration) for how to configure.
 
 You can change this attribute's name via the cache\_attr parameter.
 
