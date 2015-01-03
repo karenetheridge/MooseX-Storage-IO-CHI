@@ -173,7 +173,7 @@ D) Override the build\_cache method in your class to directly build a CHI object
 
 ## Serialization
 
-If your class provides a freeze/thaw method, it will be called before calling CHI's get/set methods.  Otherwise, we will rely on CHI's serialization.
+If your class provides a format serialization level - i.e. freeze and thaw methods - it will be called around calling CHI's get/set methods.  Otherwise, we will rely on CHI's serialization.
 
 # SEE ALSO
 

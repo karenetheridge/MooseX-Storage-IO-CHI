@@ -276,7 +276,7 @@ D) Override the build_cache method in your class to directly build a CHI object,
 
 =head2 Serialization
 
-If your class provides a freeze/thaw method, it will be called before calling CHI's get/set methods.  Otherwise, we will rely on CHI's serialization.
+If your class provides a format serialization level - i.e. freeze and thaw methods - it will be called around calling CHI's get/set methods.  Otherwise, we will rely on CHI's serialization.
 
 =head1 SEE ALSO
 
