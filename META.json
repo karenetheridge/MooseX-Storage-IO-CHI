@@ -1,5 +1,5 @@
 {
-   "abstract" : "Blah blah blah",
+   "abstract" : "Store and retrieve Moose objects to a cache, via L<CHI>.",
    "author" : [
       "Steve Caldwell <scaldwell@gmail.com>"
    ],
