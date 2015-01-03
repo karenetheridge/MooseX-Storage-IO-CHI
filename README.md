@@ -65,7 +65,7 @@ MooseX::Storage::IO::CHI is a Moose role that provides an io layer for [MooseX::
 
 You should understand the basics of [Moose](https://metacpan.org/pod/Moose), [MooseX::Storage](https://metacpan.org/pod/MooseX::Storage), and [CHI](https://metacpan.org/pod/CHI) before using this module.
 
-At a bare minimum the consuming class needs to give this role a [CHI](https://metacpan.org/pod/CHI) configuration, and a field to use as a cachekey - see ["cache\_args"](#cache_args) and ["key\_attr"](#key_attr).
+At a bare minimum the consuming class needs to give this role a [CHI](https://metacpan.org/pod/CHI) configuration, and a field to use as a cachekey - see [cache\_args](#cache_args) and [key\_attr](#key_attr).
 
 # PARAMETERS
 
@@ -93,7 +93,7 @@ Following are attributes that will be added to your consuming class.
 
 ## cache
 
-A [CHI](https://metacpan.org/pod/CHI) object that will be used to communicate to your cache.  See ["CACHE CONFIGURATION"](#cache-configuration) for more details.
+A [CHI](https://metacpan.org/pod/CHI) object that will be used to communicate to your cache.  See [CACHE CONFIGURATION](#cache-configuration) for more details.
 
 You can change this attribute's name via the cache\_attr parameter.
 
@@ -117,13 +117,13 @@ You can also pass in an inject hashref to supply additional arguments to the cla
 
 ## $cache = $class->build\_cache()
 
-See ["CACHE CONFIGURATION"](#cache-configuration).
+See [CACHE CONFIGURATION](#cache-configuration).
 
 You can change this method's name via the cache\_builder\_method parameter.
 
 ## $args = $class->cache\_args()
 
-See ["CACHE CONFIGURATION"](#cache-configuration)
+See [CACHE CONFIGURATION](#cache-configuration)
 
 You can change this method's name via the cache\_args\_method parameter.
 

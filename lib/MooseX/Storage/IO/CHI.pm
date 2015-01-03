@@ -168,7 +168,7 @@ MooseX::Storage::IO::CHI is a Moose role that provides an io layer for L<MooseX:
 
 You should understand the basics of L<Moose>, L<MooseX::Storage>, and L<CHI> before using this module.
 
-At a bare minimum the consuming class needs to give this role a L<CHI> configuration, and a field to use as a cachekey - see L<"cache_args"> and L<"key_attr">.
+At a bare minimum the consuming class needs to give this role a L<CHI> configuration, and a field to use as a cachekey - see L<cache_args|"cache_args"> and L<key_attr|"key_attr">.
 
 =head1 PARAMETERS
 
@@ -196,7 +196,7 @@ Following are attributes that will be added to your consuming class.
 
 =head2 cache
 
-A L<CHI> object that will be used to communicate to your cache.  See L<"CACHE CONFIGURATION"> for more details.
+A L<CHI> object that will be used to communicate to your cache.  See L<CACHE CONFIGURATION|"CACHE CONFIGURATION"> for more details.
 
 You can change this attribute's name via the cache_attr parameter.
 
@@ -220,13 +220,13 @@ You can also pass in an inject hashref to supply additional arguments to the cla
 
 =head2 $cache = $class->build_cache()
 
-See L<"CACHE CONFIGURATION">.
+See L<CACHE CONFIGURATION|"CACHE CONFIGURATION">.
 
 You can change this method's name via the cache_builder_method parameter.
 
 =head2 $args = $class->cache_args()
 
-See L<"CACHE CONFIGURATION">
+See L<CACHE CONFIGURATION|"CACHE CONFIGURATION">
 
 You can change this method's name via the cache_args_method parameter.
 
