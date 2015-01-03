@@ -37,16 +37,34 @@
       },
       "runtime" : {
          "requires" : {
+            "CHI" : "0",
+            "Moose" : "0",
+            "MooseX::Role::Parameterized" : "0",
+            "MooseX::Storage" : "0",
             "perl" : "5.008005"
          }
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.96"
+            "Test::Most" : "0"
          }
       }
    },
    "release_status" : "stable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/stevecaldwell77/MooseX-Storage-IO-CHI/issues"
+      },
+      "homepage" : "https://github.com/stevecaldwell77/MooseX-Storage-IO-CHI",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/stevecaldwell77/MooseX-Storage-IO-CHI.git",
+         "web" : "https://github.com/stevecaldwell77/MooseX-Storage-IO-CHI"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "Stephen Caldwell <steve@campusexplorer.com>"
+   ]
 }
 
