@@ -77,17 +77,22 @@ role {
 
     method load => sub {
         my ( $class, $cachekey, %args ) = @_;
-        my $cache  = delete $args{cache} || $class->$cache_builder_method;
-        my $inject = $args{inject}       || {};
+        my $cache  = delete $args{cache}  || $class->$cache_builder_method;
+        my $inject = delete $args{inject} || {};
 
-        my $packed = $cache->get($cachekey);
-        return undef unless $packed;
+        my $data = $cache->get($cachekey);
+        return undef unless $data;
 
-        return $class->unpack({
-            %$packed,
-            %$inject,
-            $cache_attr => $cache,
-        });
+        $inject->{$cache_attr} = $cache;
+
+        my $obj;
+        if ($class->can('thaw')) {
+            $obj = $class->thaw($data, inject => $inject, %args);
+        } else {
+            $obj = $class->unpack($data, inject => $inject, %args);
+        }
+
+        return $obj;
     };
 };
 
