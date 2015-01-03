@@ -36,6 +36,9 @@ parameter cache_builder_method => (
 role {
     my $p = shift;
 
+    requires 'pack';
+    requires 'unpack';
+
     my $cache_attr           = $p->cache_attr;
     my $cache_builder_method = $p->cache_builder_method;
     my $cache_args_method    = $p->cache_args_method;
