@@ -1,7 +1,7 @@
 Revision history for MooseX-Storage-IO-CHI
 
 {{$NEXT}}
-        - cleanup of some Dist::Milla stuff
+        - make Dist::Milla a develop prereq, not a build prereq
 
 0.02  2015-01-05 10:05:27 PST
         - fix some missing dependencies
