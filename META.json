@@ -4,7 +4,7 @@
       "Steve Caldwell <scaldwell@gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.9, Dist::Zilla version 5.021, CPAN::Meta::Converter version 2.142690",
+   "generated_by" : "Dist::Zilla version 5.029, Dist::Milla version v1.0.9, CPAN::Meta::Converter version 2.142690",
    "license" : [
       "perl_5"
    ],
@@ -24,6 +24,12 @@
       ]
    },
    "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Dist::Milla" : "0",
+            "Test::Pod" : "0"
+         }
+      },
       "configure" : {
          "requires" : {
             "Module::Build::Tiny" : "0.039"
@@ -41,6 +47,7 @@
             "Moose" : "0",
             "MooseX::Role::Parameterized" : "0",
             "MooseX::Storage" : "0",
+            "namespace::autoclean" : "0",
             "perl" : "5.008005"
          }
       },

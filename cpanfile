@@ -1,10 +1,16 @@
 requires 'perl', '5.008005';
 
+requires 'CHI';
 requires 'Moose';
 requires 'MooseX::Role::Parameterized';
 requires 'MooseX::Storage';
-requires 'CHI';
+requires 'namespace::autoclean';
 
 on test => sub {
     requires 'Test::Most';
+};
+
+on build => sub {
+    requires 'Dist::Milla';
+    requires 'Test::Pod';
 };
