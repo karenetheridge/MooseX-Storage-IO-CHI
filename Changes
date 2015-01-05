@@ -2,6 +2,9 @@ Revision history for MooseX-Storage-IO-CHI
 
 {{$NEXT}}
 
+0.04  2015-01-05 13:25:34 PST
+        - add key_prefix
+
 0.03  2015-01-05 10:48:01 PST
         - cleanup of some Dist::Milla stuff
 

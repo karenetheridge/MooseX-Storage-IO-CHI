@@ -12,6 +12,7 @@ First, configure your Moose class via a call to Storage:
 
     with Storage(io => [ 'CHI' => {
         key_attr   => 'doc_id',
+        key_prefix => 'mydoc-',
         cache_args => {
             driver  => 'Memcached::libmemcached',
             servers => [ "10.0.0.15:11211", "10.0.0.15:11212" ],
@@ -50,7 +51,7 @@ Now you can store/load your class to the cache you defined in cache\_args:
         },
     );
 
-    # Save it to cache
+    # Save it to cache (will be stored using key "mydoc-foo12")
     $doc->store();
 
     # Load the saved data into a new instance
@@ -74,6 +75,10 @@ Following are the parameters you can set when consuming this role that configure
 ## key\_attr
 
 "key\_attr" is a required parameter when consuming this role.  It specifies an attribute in your class that will provide the value to use as a cachekey when storing your object via [CHI](https://metacpan.org/pod/CHI)'s set method.
+
+## key\_prefix
+
+A string that will be used to prefix the key\_attr value when building the cachekey.
 
 ## cache\_args
 
@@ -105,11 +110,11 @@ Following are methods that will be added to your consuming class.
 
 Object method.  Stores the packed Moose object to your cache, via [CHI](https://metacpan.org/pod/CHI)'s set method.  You can optionally pass in a cache object directly instead of using the object's cache attribute.  Any options will be passed through to [CHI](https://metacpan.org/pod/CHI)'s set method.
 
-## $obj = $class->load($cachekey, \[, cache => $cache, inject => { key => val, ... } \])
+## $obj = $class->load($key\_value, \[, cache => $cache, inject => { key => val, ... } \])
 
 Class method.  Queries your cache using [CHI](https://metacpan.org/pod/CHI)'s get method, and returns a new Moose object built from the resulting data.  Returns undefined if there was a cache miss.
 
-The first argument is the cache key to use, and is required.
+The first argument is the key value (the value for key\_attr) to use, and is required.  It will be prefixed with key\_prefix when querying the cache.
 
 You can optionally pass in a cache object directly instead of having the class build one for you.
 
