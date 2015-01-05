@@ -1,6 +1,8 @@
 Revision history for MooseX-Storage-IO-CHI
 
 {{$NEXT}}
+
+0.02  2015-01-05 10:05:27 PST
         - fix some missing dependencies
 
 0.01  2015-01-02 20:40:20 PST
