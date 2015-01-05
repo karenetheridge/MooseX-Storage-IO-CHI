@@ -10,7 +10,3 @@ on 'test' => sub {
     requires 'Test::Most';
     requires 'Test::Pod';
 };
-
-on 'develop' => sub {
-    requires 'Dist::Milla';
-};
