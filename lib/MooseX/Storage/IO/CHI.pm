@@ -13,6 +13,11 @@ parameter key_attr => (
     required => 1,
 );
 
+parameter key_prefix => (
+    isa      => 'Str',
+    default  => '',
+);
+
 parameter cache_attr => (
     isa     => 'Str',
     default => 'cache',
@@ -64,8 +69,11 @@ role {
     method store => sub {
         my ( $self, %args ) = @_;
         my $cache = delete $args{cache} || $self->$cache_attr;
-        my $key_attr = $p->key_attr;
-        my $cachekey = $self->$key_attr;
+        my $key_attr  = $p->key_attr;
+        my $key_value = $self->$key_attr;
+        die "Cannot have null value for key_attr $key_attr"
+            unless defined $key_value;
+        my $cachekey = $p->key_prefix . $key_value;
         my $data;
         if ($self->can('freeze')) {
             $data = $self->freeze;
@@ -76,9 +84,14 @@ role {
     };
 
     method load => sub {
-        my ( $class, $cachekey, %args ) = @_;
+        my ( $class, $key_value, %args ) = @_;
         my $cache  = delete $args{cache}  || $class->$cache_builder_method;
         my $inject = delete $args{inject} || {};
+
+        my $key_attr = $p->key_attr;
+        $key_value // die "undefined value for key attr $key_attr";
+
+        my $cachekey = $p->key_prefix . $key_value;
 
         my $data = $cache->get($cachekey);
         return undef unless $data;
@@ -115,6 +128,7 @@ First, configure your Moose class via a call to Storage:
 
   with Storage(io => [ 'CHI' => {
       key_attr   => 'doc_id',
+      key_prefix => 'mydoc-',
       cache_args => {
           driver  => 'Memcached::libmemcached',
           servers => [ "10.0.0.15:11211", "10.0.0.15:11212" ],
@@ -153,7 +167,7 @@ Now you can store/load your class to the cache you defined in cache_args:
       },
   );
 
-  # Save it to cache
+  # Save it to cache (will be stored using key "mydoc-foo12")
   $doc->store();
 
   # Load the saved data into a new instance
@@ -177,6 +191,10 @@ Following are the parameters you can set when consuming this role that configure
 =head2 key_attr
 
 "key_attr" is a required parameter when consuming this role.  It specifies an attribute in your class that will provide the value to use as a cachekey when storing your object via L<CHI>'s set method.
+
+=head2 key_prefix
+
+A string that will be used to prefix the key_attr value when building the cachekey.
 
 =head2 cache_args
 
@@ -208,11 +226,11 @@ Following are methods that will be added to your consuming class.
 
 Object method.  Stores the packed Moose object to your cache, via L<CHI>'s set method.  You can optionally pass in a cache object directly instead of using the object's cache attribute.  Any options will be passed through to L<CHI>'s set method.
 
-=head2 $obj = $class->load($cachekey, [, cache => $cache, inject => { key => val, ... } ])
+=head2 $obj = $class->load($key_value, [, cache => $cache, inject => { key => val, ... } ])
 
 Class method.  Queries your cache using L<CHI>'s get method, and returns a new Moose object built from the resulting data.  Returns undefined if there was a cache miss.
 
-The first argument is the cache key to use, and is required.
+The first argument is the key value (the value for key_attr) to use, and is required.  It will be prefixed with key_prefix when querying the cache.
 
 You can optionally pass in a cache object directly instead of having the class build one for you.
 

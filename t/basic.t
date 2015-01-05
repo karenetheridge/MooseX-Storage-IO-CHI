@@ -1,5 +1,6 @@
 use strict;
 use Test::Most;
+use CHI;
 
 my $datastore = {};
 
@@ -9,7 +10,8 @@ my $datastore = {};
     use MooseX::Storage;
 
     with Storage(io => [ 'CHI' => {
-        key_attr => 'doc_id',
+        key_attr   => 'doc_id',
+        key_prefix => 'mydoc-',
         cache_args => {
             driver    => 'Memory',
             datastore => $datastore,
@@ -71,5 +73,13 @@ cmp_deeply(
     ),
     'retrieved document looks good',
 );
+
+my $cache = CHI->new(
+    driver    => 'Memory',
+    datastore => $datastore,
+);
+
+ok $cache->is_valid('mydoc-foo12'), 'stored with correct cachekey';
+ok !$cache->is_valid('foo12'), 'not stored with incorrect cackekey';
 
 done_testing;
