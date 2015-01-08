@@ -80,6 +80,10 @@ Following are the parameters you can set when consuming this role that configure
 
 A string that will be used to prefix the key\_attr value when building the cachekey.
 
+## expires\_in
+
+Expiration duration to use when saving items to cache.
+
 ## cache\_args
 
 A hashref of args that will be passed to [CHI](https://metacpan.org/pod/CHI)'s constructor when building cache objects.
@@ -106,9 +110,11 @@ You can change this attribute's name via the cache\_attr parameter.
 
 Following are methods that will be added to your consuming class.
 
-## $obj->store(\[ cache => $cache, %options \])
+## $obj->store(\[ cache => $cache \])
 
-Object method.  Stores the packed Moose object to your cache, via [CHI](https://metacpan.org/pod/CHI)'s set method.  You can optionally pass in a cache object directly instead of using the object's cache attribute.  Any options will be passed through to [CHI](https://metacpan.org/pod/CHI)'s set method.
+Object method.  Stores the packed Moose object to your cache, via [CHI](https://metacpan.org/pod/CHI)'s set method.  You can optionally pass in a cache object directly instead of using the object's cache attribute.
+
+We will look at the <"expires\_in"|expires\_in> parameter when calling set().
 
 ## $obj = $class->load($key\_value, \[, cache => $cache, inject => { key => val, ... } \])
 

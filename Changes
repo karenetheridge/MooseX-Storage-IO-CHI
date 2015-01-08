@@ -2,6 +2,9 @@ Revision history for MooseX-Storage-IO-CHI
 
 {{$NEXT}}
 
+0.05  2015-01-08 11:37:21 PST
+        - add expires_in
+        
 0.04  2015-01-05 13:25:34 PST
         - add key_prefix
 
