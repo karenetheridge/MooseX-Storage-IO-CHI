@@ -18,6 +18,11 @@ parameter key_prefix => (
     default  => '',
 );
 
+parameter expires_in => (
+    isa     => 'Maybe[Str]',
+    default => undef,
+);
+
 parameter cache_attr => (
     isa     => 'Str',
     default => 'cache',
@@ -80,7 +85,12 @@ role {
         } else {
             $data = $self->pack;
         }
-        $cache->set($cachekey, $data, \%args);
+
+        my $set_args;
+        if (defined $p->expires_in) {
+            $set_args->{expires_in} = $p->expires_in;
+        }
+        $cache->set($cachekey, $data, $set_args);
     };
 
     method load => sub {
@@ -196,6 +206,10 @@ Following are the parameters you can set when consuming this role that configure
 
 A string that will be used to prefix the key_attr value when building the cachekey.
 
+=head2 expires_in
+
+Expiration duration to use when saving items to cache.
+
 =head2 cache_args
 
 A hashref of args that will be passed to L<CHI>'s constructor when building cache objects.
@@ -222,9 +236,11 @@ You can change this attribute's name via the cache_attr parameter.
 
 Following are methods that will be added to your consuming class.
 
-=head2 $obj->store([ cache => $cache, %options ])
+=head2 $obj->store([ cache => $cache ])
 
-Object method.  Stores the packed Moose object to your cache, via L<CHI>'s set method.  You can optionally pass in a cache object directly instead of using the object's cache attribute.  Any options will be passed through to L<CHI>'s set method.
+Object method.  Stores the packed Moose object to your cache, via L<CHI>'s set method.  You can optionally pass in a cache object directly instead of using the object's cache attribute.
+
+We will look at the <"expires_in"|expires_in> parameter when calling set().
 
 =head2 $obj = $class->load($key_value, [, cache => $cache, inject => { key => val, ... } ])
 

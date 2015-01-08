@@ -16,6 +16,7 @@ my $datastore = {};
             driver    => 'Memory',
             datastore => $datastore,
         },
+        expires_in => 10,
     }]);
 
     has 'doc_id'  => (is => 'ro', isa => 'Str', required => 1);
