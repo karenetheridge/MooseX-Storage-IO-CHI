@@ -7,5 +7,6 @@ requires 'MooseX::Storage';
 requires 'namespace::autoclean';
 
 on 'test' => sub {
-    requires 'Test::Most';
+    requires 'Test::More';
+    requires 'Test::Deep';
 };
