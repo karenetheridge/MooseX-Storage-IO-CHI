@@ -8,5 +8,4 @@ requires 'namespace::autoclean';
 
 on 'test' => sub {
     requires 'Test::Most';
-    requires 'Test::Pod';
 };

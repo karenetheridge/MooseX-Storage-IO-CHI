@@ -1,6 +1,7 @@
 Revision history for MooseX-Storage-IO-CHI
 
 {{$NEXT}}
+        - removed develop-only prereqs and tests from the test phase
 
 0.05  2015-01-08 11:37:21 PST
         - add expires_in
